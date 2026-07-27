@@ -36,3 +36,10 @@ footer{text-align:center;margin-top:30px;color:#777}
 .other{
     background:#3b82f6;
 }
+.logo{
+    width:90px;
+    height:90px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 15px;
+}
