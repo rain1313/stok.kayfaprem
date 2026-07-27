@@ -168,7 +168,7 @@ function getProductIcon(productName) {
         },
         {
            keywords: ["gemini"],
-            icon: "fa-solid fa-sparkles"
+            icon: "fa-solid fa-star"
         },
         {
             keywords: ["capcut", "video"],
