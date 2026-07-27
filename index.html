@@ -1,40 +1,447 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <img src="assets/logo.png" alt="KAYFA PREMIUM" class="logo">
-<title>KAYFA APP PREMIUM</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KAYFA APP PREMIUM | Pricelist</title>
+
+    <link rel="icon" href="assets/logo.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-<header>
-<h1>KAYFA APP PREMIUM</h1>
-<p>Supplier Aplikasi Premium Terpercaya</p>
-<a class="join-btn" target="_blank" href="https://resellernetflix.my.id/">JOIN RESELLER</a>
+
+<div class="glow glow-left"></div>
+<div class="glow glow-right"></div>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="container nav-wrapper">
+
+        <a href="#" class="logo-area">
+
+            <img src="assets/logo.png">
+
+            <span>KAYFA APP PREMIUM</span>
+
+        </a>
+
+        <a
+            href="https://resellernetflix.my.id/"
+            target="_blank"
+            class="join-btn">
+
+            JOIN RESELLER
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<header class="hero">
+
+    <div class="container hero-content">
+
+        <img
+            src="assets/logo.png"
+            class="hero-logo">
+
+        <div class="hero-badge">
+
+            <span class="dot"></span>
+
+            Pricelist Supplier Premium Indonesia
+
+        </div>
+
+        <h1>
+
+            Daftar Harga
+
+            <span>Aplikasi Premium</span>
+
+        </h1>
+
+        <p>
+
+            Harga reseller dan umum selalu update otomatis langsung
+            dari database. Cari produk favoritmu dengan mudah.
+
+        </p>
+
+        <div class="hero-button">
+
+            <a
+                href="https://resellernetflix.my.id/"
+                target="_blank">
+
+                🚀 JOIN RESELLER
+
+            </a>
+
+        </div>
+
+    </div>
+
 </header>
 
-<div class="toolbar">
-<input id="search" placeholder="Cari produk...">
-</div>
+<!-- ================= STATS ================= -->
 
-<table>
-<thead>
-<tr>
-<th>Produk</th>
-<th>Varian</th>
-<th>Harga Reseller</th>
-<th>Harga Umum</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody id="tableData"></tbody>
-</table>
+<section class="stats">
 
-<footer>© 2026 KAYFA APP PREMIUM</footer>
-<script src="app.js"></script>
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+
+                    <i class="fa-solid fa-box"></i>
+
+                </div>
+
+                <div>
+
+                    <h2 id="totalProduct">0</h2>
+
+                    <p>Total Produk</p>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+                <div>
+
+                    <h2 id="readyCount">0</h2>
+
+                    <p>Ready</p>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon red">
+
+                    <i class="fa-solid fa-circle-xmark"></i>
+
+                </div>
+
+                <div>
+
+                    <h2 id="emptyCount">0</h2>
+
+                    <p>Kosong</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= SEARCH ================= -->
+
+<section class="search-section">
+
+    <div class="container">
+
+        <div class="search-wrapper">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari produk...">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FILTER ================= -->
+
+<section class="filter-section">
+
+    <div class="container">
+
+        <div id="filterContainer" class="filter-wrapper">
+
+            <button
+                class="filter-btn active"
+                data-filter="all">
+
+                Semua
+
+            </button>
+
+            <!--
+                Status lain akan dibuat otomatis oleh script.js
+
+                Contoh:
+
+                Ready
+
+                Kosong
+
+                PRE ORDER
+
+                Maintenance
+
+            -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= LAST UPDATE ================= -->
+
+<section class="update-section">
+
+    <div class="container">
+
+        <div class="update-card">
+
+            <div class="update-left">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                <span>
+
+                    Terakhir diperbarui
+
+                </span>
+
+            </div>
+
+            <span id="lastUpdate">
+
+                Memuat...
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PRODUCT ================= -->
+
+<section class="product-section">
+
+    <div class="container">
+
+        <div
+            id="loadingContainer"
+            class="product-grid">
+
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+
+        </div>
+
+        <div
+            id="productContainer"
+            class="product-grid">
+
+        </div>
+
+        <div
+            id="emptyState"
+            class="empty-state">
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <h3>
+
+                Produk tidak ditemukan
+
+            </h3>
+
+            <p>
+
+                Coba gunakan kata kunci yang berbeda.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- ================= BACK TO TOP ================= -->
+
+        <button id="backToTop" class="back-to-top">
+
+            <i class="fa-solid fa-arrow-up"></i>
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section">
+
+    <div class="container">
+
+        <div class="cta-card">
+
+            <span class="cta-badge">
+
+                Supplier Premium Indonesia
+
+            </span>
+
+            <h2>
+
+                Mau harga reseller paling murah?
+
+            </h2>
+
+            <p>
+
+                Gabung menjadi reseller KAYFA APP PREMIUM dan dapatkan
+                akses ke puluhan aplikasi premium dengan harga supplier.
+                Cocok untuk pemula maupun reseller yang ingin meningkatkan profit.
+
+            </p>
+
+            <a
+                href="https://resellernetflix.my.id/"
+                target="_blank"
+                class="cta-btn">
+
+                🚀 JOIN RESELLER
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container footer-wrapper">
+
+        <div class="footer-logo">
+
+            <img
+                src="assets/logo.png"
+                alt="Logo">
+
+            <div>
+
+                <h3>
+
+                    KAYFA APP PREMIUM
+
+                </h3>
+
+                <p>
+
+                    Supplier Aplikasi Premium
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="footer-info">
+
+            <div>
+
+                <span>
+
+                    Powered by
+
+                </span>
+
+                <strong>
+
+                    Google Sheets API
+
+                </strong>
+
+            </div>
+
+            <div>
+
+                <span>
+
+                    Update
+
+                </span>
+
+                <strong id="footerUpdate">
+
+                    Memuat...
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+
 </body>
 </html>
