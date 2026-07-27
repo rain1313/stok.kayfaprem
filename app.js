@@ -217,13 +217,18 @@ async function loadProducts() {
             );
         }
 
-        const data = await response.json();
+const result = await response.json();
 
-        if (!Array.isArray(data)) {
-            throw new Error(
-                "Format data bukan array."
-            );
-        }
+if (
+    !result ||
+    !Array.isArray(result.data)
+) {
+    throw new Error(
+        "Format data API tidak sesuai."
+    );
+}
+
+allProducts = result.data.filter(item => {
 
         allProducts = data.filter(item => {
             const product = String(
@@ -239,7 +244,7 @@ async function loadProducts() {
 
         createStatusFilters();
         updateStatistics();
-        updateLastUpdate();
+        updateLastUpdate(result.updatedAt);
         applyFilters();
 
     } catch (error) {
@@ -580,17 +585,36 @@ function animateNumber(element, target) {
    LAST UPDATE
 ========================================= */
 
-function updateLastUpdate() {
-    const now = new Date();
-
-    const formattedDate = new Intl.DateTimeFormat(
-        "id-ID",
-        {
-            dateStyle: "full",
-            timeStyle: "short",
-            timeZone: "Asia/Jakarta"
+function updateLastUpdate(updatedAt) {
+    if (!updatedAt) {
+        if (lastUpdate) {
+            lastUpdate.textContent =
+                "Belum ada riwayat pembaruan";
         }
-    ).format(now);
+
+        if (footerUpdate) {
+            footerUpdate.textContent =
+                "Belum ada riwayat pembaruan";
+        }
+
+        return;
+    }
+
+    const updateDate = new Date(updatedAt);
+
+    if (Number.isNaN(updateDate.getTime())) {
+        return;
+    }
+
+    const formattedDate =
+        new Intl.DateTimeFormat(
+            "id-ID",
+            {
+                dateStyle: "full",
+                timeStyle: "short",
+                timeZone: "Asia/Jakarta"
+            }
+        ).format(updateDate);
 
     if (lastUpdate) {
         lastUpdate.textContent =
