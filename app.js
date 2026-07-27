@@ -217,20 +217,33 @@ async function loadProducts() {
             );
         }
 
-const result = await response.json();
+        const result = await response.json();
 
-if (
-    !result ||
-    !Array.isArray(result.data)
-) {
-    throw new Error(
-        "Format data API tidak sesuai."
-    );
-}
+        let products = [];
+        let updatedAt = null;
 
-allProducts = result.data.filter(item => {
+        // Format API lama: [...]
+        if (Array.isArray(result)) {
+            products = result;
+        }
 
-        allProducts = data.filter(item => {
+        // Format API baru:
+        // { updatedAt: "...", data: [...] }
+        else if (
+            result &&
+            Array.isArray(result.data)
+        ) {
+            products = result.data;
+            updatedAt = result.updatedAt || null;
+        }
+
+        else {
+            throw new Error(
+                "Format data API tidak sesuai."
+            );
+        }
+
+        allProducts = products.filter(item => {
             const product = String(
                 item["Produk"] || ""
             ).trim();
@@ -244,7 +257,7 @@ allProducts = result.data.filter(item => {
 
         createStatusFilters();
         updateStatistics();
-        updateLastUpdate(result.updatedAt);
+        updateLastUpdate(updatedAt);
         applyFilters();
 
     } catch (error) {
