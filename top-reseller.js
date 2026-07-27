@@ -126,7 +126,7 @@ function render(data) {
 
     topProfit.textContent = rupiah(data[0].Profit);
 
-    topOrder.textContent = data[0].Order || "0";
+    topOrder.textContent = data[0]["Total Order"] || "0";
 
     // LIST
 
@@ -168,7 +168,7 @@ function render(data) {
 
             <div class="order-value">
 
-                ${item.Order}
+                ${item["Total Order"]}
 
             </div>
 
