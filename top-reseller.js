@@ -203,25 +203,31 @@ async function loadLeaderboard() {
 
         if (!res.ok) throw new Error();
 
-        const data = await res.json();
+const result = await res.json();
 
-        data.sort((a, b) => {
+const data = result.data || [];
 
-            return Number(b.Profit) - Number(a.Profit);
+data.sort((a, b) => {
 
-        });
+    return Number(b.Profit) - Number(a.Profit);
 
-        render(data);
+});
 
-    }
+render(data);
+
+// Last Update dari Apps Script
+if (result.updatedAt) {
+    lastUpdate.textContent =
+    "Update : " + new Date().toLocaleString("id-ID");
+}
 
     catch (err) {
 
-        console.error(err);
+    console.error("Leaderboard Error:", err);
 
-        showError();
+    alert(err.message);
 
-    }
+    showError();
 
 }
 
