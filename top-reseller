@@ -1,0 +1,98 @@
+<main class="top-reseller-page">
+
+    <!-- Hero -->
+    <section class="leaderboard-hero container">
+
+        <span class="hero-badge">
+            <i class="fa-solid fa-trophy"></i>
+            TOP RESELLER
+        </span>
+
+        <h1>Leaderboard Reseller</h1>
+
+        <p>Reseller dengan performa terbaik berdasarkan total profit.</p>
+
+    </section>
+
+    <!-- Top Reseller -->
+    <section class="container">
+
+        <div class="top-card">
+
+            <div class="top-card-header">
+                <span>
+                    <i class="fa-solid fa-crown"></i>
+                    TOP RESELLER
+                </span>
+
+                <small id="lastUpdate">
+                    Last Update • 27 Juli 2026
+                </small>
+            </div>
+
+            <div class="top-user">
+
+                <div class="avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <h2>Dimas</h2>
+
+                <div class="top-stats">
+
+                    <div class="stat">
+                        <span>Profit</span>
+                        <strong>Rp1.000.000</strong>
+                    </div>
+
+                    <div class="stat">
+                        <span>Total Order</span>
+                        <strong>124</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Leaderboard -->
+    <section class="container">
+
+        <div class="table-card">
+
+            <div class="table-header">
+
+                <h2>
+                    <i class="fa-solid fa-ranking-star"></i>
+                    Leaderboard
+                </h2>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Rank</th>
+                        <th>Nama</th>
+                        <th>Total Order</th>
+                        <th>Profit</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="leaderboardTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
