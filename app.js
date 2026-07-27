@@ -163,7 +163,7 @@ function getProductIcon(productName) {
             icon: "fa-solid fa-palette"
         },
         {
-            keywords: ["chatgpt", "openai", "gemini", "ai"],
+            keywords: ["chatgpt", "openai", "claude", "grok"],
             icon: "fa-solid fa-robot"
         },
         {
