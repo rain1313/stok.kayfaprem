@@ -2,7 +2,7 @@
 // CONFIG
 // =============================
 
-const API_URL = "PASTE_URL_APPS_SCRIPT_KAMU_DISINI";
+const API_URL = "https://script.google.com/macros/s/AKfycbwEu48llXaE4KJMl_8GoehxE1OEk4LRClgNS-t-ffY4atCSObg77vKXRB9CvE0XIgDV/exec";
 
 // =============================
 // ELEMENT
