@@ -1503,19 +1503,16 @@ footer{
     }
 
 .footer-wrapper{
-
     flex-direction:column;
+    align-items:flex-start;
     gap:40px;
-
 }
 
 .footer-info{
-
     width:100%;
+    display:flex;
+    justify-content:flex-start;
     gap:40px;
-
-}
-
 }
 
 
@@ -1769,10 +1766,10 @@ footer{
     }
 
 .footer-info{
-
+    display:flex;
     flex-direction:column;
-    gap:30px;
-
+    gap:28px;
+    width:100%;
 }
 
     .back-to-top{
