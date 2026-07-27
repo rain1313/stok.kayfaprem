@@ -1255,13 +1255,11 @@ nav{
    FOOTER
 ======================================= */
 
-/* ===== Footer About ===== */
-
 footer{
 
+    margin-top:60px;
+    padding:55px 0;
     border-top:1px solid rgba(255,255,255,.06);
-    padding:55px 0 35px;
-    margin-top:40px;
 
 }
 
@@ -1270,14 +1268,53 @@ footer{
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
-    gap:60px;
+    gap:80px;
 
 }
 
 .footer-about{
 
     flex:1;
-    max-width:480px;
+    max-width:470px;
+
+}
+
+.footer-title{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
+
+}
+
+.footer-title img{
+
+    width:46px;
+    height:46px;
+    object-fit:contain;
+
+}
+
+.footer-title h3{
+
+    margin:0;
+    font-size:24px;
+
+}
+
+.footer-about p{
+
+    color:var(--muted);
+    line-height:1.8;
+    margin-bottom:20px;
+
+}
+
+.footer-about small{
+
+    color:#777;
+    line-height:1.8;
 
 }
 
@@ -1285,7 +1322,6 @@ footer{
 
     display:flex;
     gap:70px;
-    flex-shrink:0;
 
 }
 
@@ -1301,14 +1337,12 @@ footer{
 .footer-social h4,
 .footer-contact h4{
 
-    margin-bottom:8px;
-    font-size:18px;
+    margin-bottom:10px;
 
 }
 
 .footer-social a,
-.footer-contact a,
-.footer-hours{
+.footer-contact a{
 
     display:flex;
     align-items:center;
@@ -1329,14 +1363,19 @@ footer{
 
 .footer-hours{
 
-    margin-top:10px;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    margin-top:12px;
 
 }
 
 .footer-hours span{
 
+    display:block;
     color:#777;
     font-size:14px;
+    margin-top:4px;
 
 }
 
