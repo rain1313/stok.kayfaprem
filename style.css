@@ -186,15 +186,9 @@ nav{
 }
 
 .nav-wrapper{
-
     display:flex;
-
-    justify-content:space-between;
-
     align-items:center;
-
     padding:18px 0;
-
 }
 
 .logo-area{
@@ -227,6 +221,27 @@ nav{
 
     letter-spacing:.4px;
 
+}
+
+/* ===== NAV MENU ===== */
+
+.nav-menu{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    margin-left:auto;
+    margin-right:24px;
+}
+
+.nav-menu a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    transition:.2s;
+}
+
+.nav-menu a:hover{
+    color:#a855f7;
 }
 
 /* =======================================
