@@ -261,7 +261,7 @@ async function loadProducts() {
 
         createStatusFilters();
         updateStatistics();
-        updateLastUpdate(updatedAt);
+        (updatedAt);
         applyFilters();
 
     } catch (error) {
@@ -603,45 +603,28 @@ function animateNumber(element, target) {
 ========================================= */
 
 function updateLastUpdate(updatedAt) {
+
     if (!updatedAt) {
+
         if (lastUpdate) {
-            lastUpdate.textContent =
-                "Belum ada riwayat pembaruan";
+            lastUpdate.textContent = "Belum ada riwayat pembaruan";
         }
 
         if (footerUpdate) {
-            footerUpdate.textContent =
-                "Belum ada riwayat pembaruan";
+            footerUpdate.textContent = "Belum ada riwayat pembaruan";
         }
 
         return;
     }
 
-    const updateDate = new Date(updatedAt);
-
-    if (Number.isNaN(updateDate.getTime())) {
-        return;
-    }
-
-    const formattedDate =
-        new Intl.DateTimeFormat(
-            "id-ID",
-            {
-                dateStyle: "full",
-                timeStyle: "short",
-                timeZone: "Asia/Jakarta"
-            }
-        ).format(updateDate);
-
     if (lastUpdate) {
-        lastUpdate.textContent =
-            `${formattedDate} WIB`;
+        lastUpdate.textContent = updatedAt + " WIB";
     }
 
     if (footerUpdate) {
-        footerUpdate.textContent =
-            `${formattedDate} WIB`;
+        footerUpdate.textContent = updatedAt + " WIB";
     }
+
 }
 
 
