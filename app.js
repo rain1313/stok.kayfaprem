@@ -261,7 +261,7 @@ async function loadProducts() {
 
         createStatusFilters();
         updateStatistics();
-        (updatedAt);
+        updateLastUpdate(updatedAt);
         applyFilters();
 
     } catch (error) {
