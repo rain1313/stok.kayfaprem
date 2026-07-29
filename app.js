@@ -259,7 +259,7 @@ async function loadProducts() {
             return product !== "" || variant !== "";
         });
 
-        createStatusFilters();
+        createCategoryFilters();
         updateStatistics();
         updateLastUpdate(updatedAt);
         applyFilters();
@@ -348,6 +348,14 @@ function renderProducts(products) {
             originalStatus
         );
 
+        const originalCategory = String(
+            item["Kategori"] || ""
+        ).trim();
+
+        const safeCategory = escapeHTML(
+            originalCategory
+        );
+
         const statusClass = getStatusClass(
             originalStatus
         );
@@ -405,10 +413,19 @@ function renderProducts(products) {
 
             </div>
 
-            <span class="status ${statusClass}">
-                <i class="fa-solid ${statusIcon}"></i>
-                ${safeStatus}
-            </span>
+            <div class="product-meta">
+                <span class="status ${statusClass}">
+                    <i class="fa-solid ${statusIcon}"></i>
+                    ${safeStatus}
+                </span>
+
+                ${originalCategory ? `
+                    <span class="category-badge">
+                        <i class="fa-solid fa-tag"></i>
+                        ${safeCategory}
+                    </span>
+                ` : ""}
+            </div>
         `;
 
         productContainer.appendChild(card);
@@ -420,31 +437,32 @@ function renderProducts(products) {
    FILTER OTOMATIS
 ========================================= */
 
-function createStatusFilters() {
-    const statuses = [];
+function createCategoryFilters() {
+    const categories = [];
 
     allProducts.forEach(item => {
-        const originalStatus = String(
-            item["Status"] || ""
+        const originalCategory = String(
+            item["Kategori"] || ""
         ).trim();
 
-        const statusKey = normalizeText(
-            originalStatus
+        const categoryKey = normalizeText(
+            originalCategory
         );
 
         if (
-            originalStatus &&
-            !statuses.some(item =>
-                item.key === statusKey
+            originalCategory &&
+            !categories.some(item =>
+                item.key === categoryKey
             )
         ) {
-            statuses.push({
-                key: statusKey,
-                label: originalStatus
+            categories.push({
+                key: categoryKey,
+                label: originalCategory
             });
         }
     });
 
+    activeFilter = "all";
     filterContainer.innerHTML = "";
 
     const allButton = createFilterButton(
@@ -455,10 +473,10 @@ function createStatusFilters() {
     allButton.classList.add("active");
     filterContainer.appendChild(allButton);
 
-    statuses.forEach(status => {
+    categories.forEach(category => {
         const button = createFilterButton(
-            status.key,
-            status.label
+            category.key,
+            category.label
         );
 
         filterContainer.appendChild(button);
@@ -514,6 +532,10 @@ function applyFilters() {
             item["Status"]
         );
 
+        const category = normalizeText(
+            item["Kategori"]
+        );
+
         const resellerPrice = normalizeText(
             item["Harga Reseller"]
         );
@@ -526,14 +548,15 @@ function applyFilters() {
             product.includes(keyword) ||
             variant.includes(keyword) ||
             status.includes(keyword) ||
+            category.includes(keyword) ||
             resellerPrice.includes(keyword) ||
             publicPrice.includes(keyword);
 
-        const matchesStatus =
+        const matchesCategory =
             activeFilter === "all" ||
-            status === activeFilter;
+            category === activeFilter;
 
-        return matchesSearch && matchesStatus;
+        return matchesSearch && matchesCategory;
     });
 
     renderProducts(filteredProducts);
@@ -602,6 +625,38 @@ function animateNumber(element, target) {
    LAST UPDATE
 ========================================= */
 
+function formatLastUpdate(updatedAt) {
+    const match = String(updatedAt).trim().match(
+        /^(\d{1,2})\/(\d{1,2})\/(\d{4})[ ,T]+(\d{1,2}):(\d{2})/
+    );
+
+    if (!match) {
+        return String(updatedAt).trim();
+    }
+
+    const [, day, month, year, hour, minute] = match;
+    const date = new Date(Date.UTC(
+        Number(year),
+        Number(month) - 1,
+        Number(day)
+    ));
+
+    const weekday = new Intl.DateTimeFormat("id-ID", {
+        weekday: "long",
+        timeZone: "UTC"
+    }).format(date);
+
+    const monthName = new Intl.DateTimeFormat("id-ID", {
+        month: "long",
+        timeZone: "UTC"
+    }).format(date);
+
+    const capitalizedWeekday =
+        weekday.charAt(0).toUpperCase() + weekday.slice(1);
+
+    return `${capitalizedWeekday}, ${Number(day)} ${monthName} ${year} | ${hour.padStart(2, "0")}:${minute} WIB`;
+}
+
 function updateLastUpdate(updatedAt) {
 
     if (!updatedAt) {
@@ -617,12 +672,14 @@ function updateLastUpdate(updatedAt) {
         return;
     }
 
+    const formattedUpdate = formatLastUpdate(updatedAt);
+
     if (lastUpdate) {
-        lastUpdate.textContent = updatedAt + " WIB";
+        lastUpdate.textContent = formattedUpdate;
     }
 
     if (footerUpdate) {
-        footerUpdate.textContent = updatedAt + " WIB";
+        footerUpdate.textContent = formattedUpdate;
     }
 
 }
