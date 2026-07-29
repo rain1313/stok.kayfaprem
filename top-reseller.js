@@ -184,9 +184,6 @@ function render(data) {
 
     });
 
-    lastUpdate.textContent =
-        "Update : " + new Date().toLocaleString("id-ID");
-
 }
 
 // =============================
