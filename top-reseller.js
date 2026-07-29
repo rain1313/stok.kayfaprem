@@ -186,6 +186,28 @@ function render(data) {
 
 }
 
+function formatLastUpdate(value) {
+    const match = String(value || "").trim().match(
+        /^(\d{1,2})\/(\d{1,2})\/(\d{4})[ ,T]+(\d{1,2}):(\d{2})/
+    );
+
+    if (!match) return String(value || "").trim();
+
+    const [, day, month, year, hour, minute] = match;
+    const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+    const weekday = new Intl.DateTimeFormat("id-ID", {
+        weekday: "long",
+        timeZone: "UTC"
+    }).format(date);
+    const monthName = new Intl.DateTimeFormat("id-ID", {
+        month: "long",
+        timeZone: "UTC"
+    }).format(date);
+    const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);
+
+    return `${capitalizedWeekday}, ${Number(day)} ${monthName} ${year} | ${hour.padStart(2, "0")}:${minute} WIB`;
+}
+
 // =============================
 // FETCH
 // =============================
@@ -223,8 +245,8 @@ async function loadLeaderboard() {
             : null;
 
         lastUpdate.textContent = updatedAt
-            ? `Update : ${updatedAt}`
-            : `Update : ${new Date().toLocaleString("id-ID")}`;
+            ? formatLastUpdate(updatedAt)
+            : "Belum ada riwayat pembaruan";
 
     } catch (err) {
         console.error("Leaderboard Error:", err);
