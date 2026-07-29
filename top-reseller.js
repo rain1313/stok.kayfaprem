@@ -2,7 +2,7 @@
 // CONFIG
 // =============================
 
-const API_URL = "https://script.google.com/macros/s/AKfycbwEu48llXaE4KJMl_8GoehxE1OEk4LRClgNS-t-ffY4atCSObg77vKXRB9CvE0XIgDV/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzjmPVAmHmPnXZ3WOJEJZjp5Az7AzqQIHzkpupcVyJX1tB6k1iEo31DbfTXVG5IaOnT/exec";
 
 // =============================
 // ELEMENT
