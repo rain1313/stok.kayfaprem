@@ -438,6 +438,11 @@ function renderProducts(products) {
 ========================================= */
 
 function createCategoryFilters() {
+    if (!filterContainer) {
+        activeFilter = "all";
+        return;
+    }
+
     const categories = [];
 
     allProducts.forEach(item => {
