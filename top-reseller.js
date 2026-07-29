@@ -195,17 +195,11 @@ function formatLastUpdate(value) {
 
     const [, day, month, year, hour, minute] = match;
     const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
-    const weekday = new Intl.DateTimeFormat("id-ID", {
-        weekday: "long",
-        timeZone: "UTC"
-    }).format(date);
-    const monthName = new Intl.DateTimeFormat("id-ID", {
-        month: "long",
-        timeZone: "UTC"
-    }).format(date);
-    const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);
+    const weekdays = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    const paddedHour = Number(hour) < 10 ? `0${Number(hour)}` : String(Number(hour));
 
-    return `${capitalizedWeekday}, ${Number(day)} ${monthName} ${year} | ${hour.padStart(2, "0")}:${minute} WIB`;
+    return `${weekdays[date.getUTCDay()]}, ${Number(day)} ${months[Number(month) - 1]} ${year} | ${paddedHour}:${minute} WIB`;
 }
 
 // =============================
@@ -244,13 +238,20 @@ async function loadLeaderboard() {
             ? result.updatedAt
             : null;
 
-        lastUpdate.textContent = updatedAt
-            ? formatLastUpdate(updatedAt)
-            : "Belum ada riwayat pembaruan";
+        if (lastUpdate) {
+            try {
+                lastUpdate.textContent = updatedAt
+                    ? formatLastUpdate(updatedAt)
+                    : "Belum ada riwayat pembaruan";
+            } catch (formatError) {
+                console.warn("Format tanggal gagal:", formatError);
+                lastUpdate.textContent = String(updatedAt || "Belum ada riwayat pembaruan");
+            }
+        }
 
     } catch (err) {
         console.error("Leaderboard Error:", err);
-        lastUpdate.textContent = "Gagal mengambil data";
+        if (lastUpdate) lastUpdate.textContent = "Gagal mengambil data";
         showError();
     }
 }
@@ -271,6 +272,8 @@ const backBtn = document.querySelector(".back-to-top");
 
 window.addEventListener("scroll", () => {
 
+    if (!backBtn) return;
+
     if (window.scrollY > 300) {
 
         backBtn.style.display = "block";
@@ -283,7 +286,7 @@ window.addEventListener("scroll", () => {
 
 });
 
-backBtn.addEventListener("click", () => {
+if (backBtn) backBtn.addEventListener("click", () => {
 
     window.scrollTo({
 
