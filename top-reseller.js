@@ -198,37 +198,42 @@ async function loadLeaderboard() {
     showLoading();
 
     try {
+        const url = new URL(API_URL);
+        url.searchParams.set("sheet", "TopReseller");
+        url.searchParams.set("timestamp", Date.now());
 
-        const res = await fetch(API_URL + "?sheet=TopReseller");
+        const res = await fetch(url, {
+            cache: "no-store"
+        });
 
-        if (!res.ok) throw new Error();
+        if (!res.ok) {
+            throw new Error(`HTTP error: ${res.status}`);
+        }
 
-const result = await res.json();
+        const result = await res.json();
+        const data = Array.isArray(result)
+            ? result
+            : (Array.isArray(result.data) ? result.data : []);
 
-const data = result.data || [];
+        data.sort((a, b) => {
+            return Number(b.Profit) - Number(a.Profit);
+        });
 
-data.sort((a, b) => {
+        render(data);
 
-    return Number(b.Profit) - Number(a.Profit);
+        const updatedAt = !Array.isArray(result)
+            ? result.updatedAt
+            : null;
 
-});
+        lastUpdate.textContent = updatedAt
+            ? `Update : ${updatedAt}`
+            : `Update : ${new Date().toLocaleString("id-ID")}`;
 
-render(data);
-
-// Last Update dari Apps Script
-if (result.updatedAt) {
-    lastUpdate.textContent =
-    "Update : " + new Date().toLocaleString("id-ID");
-}
-
-    catch (err) {
-
-    console.error("Leaderboard Error:", err);
-
-    alert(err.message);
-
-    showError();
-
+    } catch (err) {
+        console.error("Leaderboard Error:", err);
+        lastUpdate.textContent = "Gagal mengambil data";
+        showError();
+    }
 }
 
 // =============================
