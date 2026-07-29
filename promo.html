@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Informasi promo aplikasi premium terbaru dari Kayfa App Premium.">
+    <title>Promo | Kayfa App Premium</title>
+    <link rel="icon" href="assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="promo.css?v=3">
+</head>
+<body>
+    <div class="glow glow-left"></div>
+    <div class="glow glow-right"></div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav>
+        <div class="container nav-wrapper">
+            <a href="/" class="logo-area">
+                <img src="assets/logo.png" alt="Kayfa Store">
+            </a>
+
+            <div class="nav-menu">
+                <a href="/top-reseller">Top Reseller</a>
+                <a href="/promo" class="active">Promo</a>
+            </div>
+
+            <a href="/join-reseller" class="join-btn">
+                Join Reseller
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main class="promo-main">
+        <section class="promo-hero">
+            <div class="container promo-content">
+                <span class="promo-badge reveal">
+                    <i class="fa-solid fa-tags"></i>
+                    PROMO TERBARU
+                </span>
+
+                <h1 class="reveal">Promo Aplikasi <span>Premium</span></h1>
+                <p class="promo-description reveal">Temukan penawaran terbaik untuk berbagai aplikasi premium favoritmu di sini.</p>
+
+                <div class="promo-update reveal">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Terakhir diperbarui:</span>
+                    <strong id="lastUpdate">Memuat...</strong>
+                </div>
+
+                <div id="promoLoading" class="promo-grid promo-loading" aria-label="Memuat promo">
+                    <div class="promo-skeleton"></div>
+                    <div class="promo-skeleton"></div>
+                    <div class="promo-skeleton"></div>
+                </div>
+
+                <div id="promoGrid" class="promo-grid"></div>
+
+                <div id="promoEmpty" class="promo-empty">
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span><i class="fa-solid fa-clock"></i></span>
+                    </div>
+                    <h2>Harga promo belum tersedia</h2>
+                    <p>Harga promo aplikasi premium belum tersedia untuk saat ini. Silakan cek kembali halaman ini secara berkala.</p>
+                    <div class="empty-info">
+                        <i class="fa-solid fa-bell"></i>
+                        <span>Promo terbaru akan ditampilkan di halaman ini.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="footer-about">
+                <div class="footer-title">
+                    <img src="assets/logo.png" alt="Kayfa Logo">
+                    <h3>KAYFA APP PREMIUM</h3>
+                </div>
+                <p>Pusat akun premium & supplier akun premium terpercaya di Indonesia.</p>
+                <small>© 2026 Kayfa App Premium.<br>All Rights Reserved.</small>
+            </div>
+
+            <div class="footer-info">
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <a href="https://facebook.com/KayfaAppPremium" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                        Kayfa App Premium
+                    </a>
+                    <a href="https://instagram.com/kayfa.app" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        kayfa.app
+                    </a>
+                    <a href="https://threads.net/@kayfa.app" target="_blank">
+                        <i class="fab fa-threads"></i>
+                        kayfa.app
+                    </a>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <a href="https://wa.me/62895329375374" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        +62 895-3293-7374
+                    </a>
+                    <div class="footer-hours">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Buka Setiap Hari</strong>
+                            <span>09.00 - 22.00 WIB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top" aria-label="Kembali ke atas">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script src="promo.js?v=4"></script>
+</body>
+</html>
